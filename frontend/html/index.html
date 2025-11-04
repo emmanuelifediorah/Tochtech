@@ -3,9 +3,589 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>TochTech - Reliable Solar & Inverter Solutions</title>
+    <style>
+        /* === MOBILE FIRST STYLES === */
+        :root {
+            --forest-green: #2E8B57;
+            --white: #FFFFFF;
+            --yellow: #FFD700;
+            --dark-gray: #333333;
+            --light-gray: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--forest-green);
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 70px;
+            left: -100%;
+            background: var(--white);
+            width: 100%;
+            height: calc(100vh - 70px);
+            transition: left 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu.active {
+            left: 0;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 2rem;
+        }
+
+        .nav-menu li {
+            margin: 1.5rem 0;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .hamburger {
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+        }
+
+        /* Hero Section with Particles */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--forest-green) 0%, #1a5c38 100%);
+            top: 0;
+            left: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 1rem;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .motto {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            color: var(--yellow);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            margin: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--yellow);
+            color: var(--dark-gray);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Sections Common Styles */
+        section {
+            padding: 4rem 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--forest-green);
+            font-size: 1.8rem;
+        }
+
+        /* Trust Signals */
+        .trust-signals {
+            background: var(--white);
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .trust-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .trust-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--forest-green);
+        }
+
+        /* Services */
+        .services {
+            background: var(--light-gray);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--forest-green);
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            color: var(--forest-green);
+        }
+
+        /* Process */
+        .process {
+            background: var(--white);
+        }
+
+        .process-steps {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .step-number {
+            background: var(--forest-green);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--forest-green);
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .cta h2 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .cta .btn {
+            background: var(--yellow);
+            color: var(--dark-gray);
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-motto {
+            color: var(--yellow);
+            font-style: italic;
+            margin: 1rem 0;
+        }
+
+        .social-links {
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            color: var(--white);
+            margin: 0 0.5rem;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        /* === TABLET STYLES === */
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .trust-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hamburger {
+                display: none;
+            }
+
+            .nav-menu {
+                position: static;
+                background: none;
+                width: auto;
+                height: auto;
+                box-shadow: none;
+            }
+
+            .nav-menu ul {
+                display: flex;
+                padding: 0;
+            }
+
+            .nav-menu li {
+                margin: 0 1rem;
+            }
+
+            .nav-menu a {
+                color: var(--dark-gray);
+            }
+
+            .nav-menu a:hover {
+                color: var(--forest-green);
+            }
+        }
+
+        /* === DESKTOP STYLES === */
+        @media (min-width: 1024px) {
+            .trust-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            section {
+                padding: 6rem 2rem;
+            }
+
+            .hero-content {
+                padding: 0 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">TochTech</div>
+            <nav>
+                <button class="hamburger">☰</button>
+                <div class="nav-menu">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#trust">Why Choose Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#process">Our Process</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div id="particles-js"></div>
+        <div class="hero-content">
+            <h1>Reliable Power for Your Home & Business</h1>
+            <div class="motto">"Toching Lives Positively"</div>
+            <p>Trusted solar and inverter solutions that keep you running through any power challenge.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Get a Free Energy Audit</a>
+                <a href="#services" class="btn btn-secondary">Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Signals -->
+    <section id="trust" class="trust-signals">
+        <h2 class="section-title">Why Homeowners & Businesses Trust TochTech</h2>
+        <div class="trust-grid">
+            <div class="trust-item">
+                <div class="trust-icon">🛡️</div>
+                <h3>Licensed & Insured</h3>
+                <p>Fully certified and protected for your peace of mind</p>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">⭐</div>
+                <h3>Quality Components</h3>
+                <p>We use only premium, durable equipment</p>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">⏱️</div>
+                <h3>10+ Years Experience</h3>
+                <p>Proven track record of reliable installations</p>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">📞</div>
+                <h3>Dedicated Support</h3>
+                <p>We're here for you long after installation</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="services">
+        <h2 class="section-title">Our Expert Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">☀️</div>
+                <h3>Solar Panel Installation</h3>
+                <p>Residential and commercial installations for reduced bills and energy independence with top-tier solar technology.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔋</div>
+                <h3>Inverter & Battery Solutions</h3>
+                <p>On-grid, off-grid, and hybrid systems with battery backup to end load shedding worries forever.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🛠️</div>
+                <h3>System Maintenance & Repair</h3>
+                <p>Keep your system running at peak efficiency with our expert care and prompt repair services.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💡</div>
+                <h3>Energy Audits & LED Lighting</h3>
+                <p>We identify savings opportunities and provide efficient LED upgrades to maximize your energy efficiency.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process" class="process">
+        <h2 class="section-title">The TochTech Process: Simple & Transparent</h2>
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div>
+                    <h3>Consult & Audit</h3>
+                    <p>We discuss your needs and conduct a comprehensive free energy audit of your property.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div>
+                    <h3>Custom Design</h3>
+                    <p>We create a tailored system solution that fits your property, needs, and budget perfectly.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div>
+                    <h3>Professional Installation</h3>
+                    <p>Our certified team performs clean, efficient installations with minimal disruption.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <div>
+                    <h3>Ongoing Support</h3>
+                    <p>We provide continuous maintenance and support for complete peace of mind.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="cta">
+        <h2>Ready to Take Control of Your Energy Costs?</h2>
+        <p>Schedule your free, no-obligation energy audit today and discover how much you can save.</p>
+        <a href="#contact" class="btn">Contact Us Now</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo">TochTech</div>
+            <div class="footer-motto">"Toching Lives Positively"</div>
+            <div class="social-links">
+                <a href="#">📘</a>
+                <a href="#">📷</a>
+                <a href="#">💼</a>
+            </div>
+            <p>Contact: info@tochtech.com | (123) 456-7890</p>
+            <p>&copy; 2024 TochTech. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-menu').classList.remove('active');
+            });
+        });
+
+        // Particles.js Configuration
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
